@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import deck.Card;
 
-public class Player
+public class Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	private boolean isDealer;
@@ -38,7 +38,7 @@ public class Player
 		return new Bid(number, suit);
 	}
 	
-	public Card play()
+	public Card play(Card played[])
 	{
 		return this.hand.get(0);
 	}

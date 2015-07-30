@@ -21,15 +21,16 @@ public class Game
 	
 	private ArrayList<Card> kitty;
 	private Deck deck;
-	private Player[] players;
+	private IPlayer[] players;
 	private int[] playerOrder;
 	private int trump;
 	private int misere;
 	
-	public Game()
+	public Game(int bots)
 	{
 		kitty = new ArrayList<Card>(KITTY_SIZE);
 		deck = new Deck(true);
+		// TODO: add support for AIPlayers
 		players = new Player[4];
 		trump = NO_TRUMP;
 		misere = NONE;
@@ -83,17 +84,20 @@ public class Game
 		kitty.add(deck.draw(false));
 	}
 	
-	public Player hand()
+	public IPlayer hand()
 	{
 		ArrayList<Card> hand = new ArrayList<Card>(4);
-		// assume that the best card is the first card
+		// let the best card is the first card by default
 		Card bestCard = hand.get(0);
-		// assume that the winning player is the player who played the first hand
-		Player winner = this.players[this.playerOrder[0]];
+		// let the winning player be the player who played the first card be default
+		IPlayer winner = this.players[this.playerOrder[0]];
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
-			hand.add(this.players[i].play());
+			// get the currently played cards
+			Card played[] = hand.toArray(new Card[hand.size()]);
+			// get the next player to play a card based on the already dealt cards
+			hand.add(this.players[i].play(played));
 		}
 		
 		// if it's no trumps

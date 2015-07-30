@@ -1,0 +1,11 @@
+package game;
+
+import deck.Card;
+
+public interface IPlayer
+{
+	public boolean getIsDealer();
+	public Bid bid();
+	public void receive(Card card);
+	public Card play(Card played[]);
+}
