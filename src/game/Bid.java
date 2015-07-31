@@ -1,11 +1,13 @@
 package game;
 
+import deck.Card.Suit;
+
 public class Bid
 {
 	private int number;
-	private int suit;
+	private Suit suit;
 	
-	public Bid(int number, int suit)
+	public Bid(int number, Suit suit)
 	{
 		this.number = number;
 		this.suit = suit;
@@ -16,7 +18,7 @@ public class Bid
 		return this.number;
 	}
 	
-	public int getSuit()
+	public Suit getSuit()
 	{
 		return this.suit;
 	}

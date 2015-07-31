@@ -108,7 +108,7 @@ public class Deck
 		return card;
 	}
 	
-	public void remove(int suit, int rank)
+	public void remove(Suit suit, Rank rank)
 	{
 		for( int i = 0; i < deck.size(); i++ )
 		{

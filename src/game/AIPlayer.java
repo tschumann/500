@@ -3,25 +3,38 @@ package game;
 import java.util.ArrayList;
 
 import deck.Card;
+import deck.Card.Rank;
+import deck.Card.Suit;
 
 public class AIPlayer extends Player implements IPlayer 
 {
 	private ArrayList<Card> hand;
 	
-	public Bid bid()
+	public Bid bid(Bid previousBid)
 	{
-		int spades = numberOfSuit(Card.Suit.SPADE);
-		int diamonds = numberOfSuit(Card.Suit.DIAMOND);
-		int clubs = numberOfSuit(Card.Suit.CLUB);
-		int hearts = numberOfSuit(Card.Suit.HEART);
+		int spades = numberOfSuit(Suit.SPADE);
+		int diamonds = numberOfSuit(Suit.DIAMOND);
+		int clubs = numberOfSuit(Suit.CLUB);
+		int hearts = numberOfSuit(Suit.HEART);
+		int highCards = numberOfHighCards();
 		int number = 0;
-		int suit = Card.Suit.SPADE;
+		Suit suit = Suit.SPADE;
 		
-		// if we have the joker
-		if( hasJoker() )
+		// if we have a lot of high cards
+		if( highCards >= 5 )
 		{
+			// bid no trumps
+			suit = Suit.NO_TRUMP;
+			number += highCards;
+		}
+		else 
+		{
+			// if we have the joker
+			if( hasJoker() )
+			{
 			// we can definitely win a hand with it, so increment the bid
-			number++;
+				number++;
+			}
 		}
 		
 		return new Bid(number, suit);
@@ -45,7 +58,7 @@ public class AIPlayer extends Player implements IPlayer
 		return false;
 	}
 	
-	private int numberOfSuit(int suit)
+	private int numberOfSuit(Suit suit)
 	{
 		int count = 0;
 		
@@ -60,13 +73,13 @@ public class AIPlayer extends Player implements IPlayer
 		return count;
 	}
 	
-	private int numberOfHighCards(int suit)
+	private int numberOfHighCards()
 	{
 		int count = 0;
 		
 		for( int i = 0; i < hand.size(); i++ )
 		{
-			if( hand.get(i).getSuit() == suit )
+			if( hand.get(i).getRank().ordinal() >= Rank.JACK.ordinal() )
 			{
 				count++;
 			}

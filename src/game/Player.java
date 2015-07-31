@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 
 import deck.Card;
+import deck.Card.Suit;
 
 public class Player implements IPlayer
 {
@@ -33,12 +34,12 @@ public class Player implements IPlayer
 	public Bid bid()
 	{
 		int number = 6;
-		int suit = Card.Suit.SPADE;
+		Suit suit = Suit.SPADE;
 		
 		return new Bid(number, suit);
 	}
 	
-	public Card play(Card played[])
+	public Card play(Card[] played)
 	{
 		return this.hand.get(0);
 	}

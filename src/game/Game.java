@@ -10,11 +10,11 @@ import deck.Card.Suit;
 public class Game
 {
 	public static final int HAND_SIZE = 10;
+	public static final int NUMBER_OF_HANDS = 10;
 	public static final int KITTY_SIZE = 3;
-	public static final int REMOVED_JOKER_SUIT = Suit.BLACK;
-	public static final int KEPT_JOKER_SUIT = Suit.RED;
+	public static final Suit REMOVED_JOKER_SUIT = Suit.BLACK;
+	public static final Suit KEPT_JOKER_SUIT = Suit.RED;
 	
-	public static final int NO_TRUMP = 100;
 	public static final int NONE = 101;
 	public static final int MISERE = 102;
 	public static final int OPEN_MISERE = 103;
@@ -23,7 +23,7 @@ public class Game
 	private Deck deck;
 	private IPlayer[] players;
 	private int[] playerOrder;
-	private int trump;
+	private Suit trumpSuit;
 	private int misere;
 	
 	public Game(int bots)
@@ -32,7 +32,7 @@ public class Game
 		deck = new Deck(true);
 		// TODO: add support for AIPlayers
 		players = new Player[4];
-		trump = NO_TRUMP;
+		trumpSuit = Suit.NO_TRUMP;
 		misere = NONE;
 		
 		// remove the unused cards from the deck
@@ -101,7 +101,7 @@ public class Game
 		}
 		
 		// if it's no trumps
-		if( this.trump == NO_TRUMP )
+		if( trumpSuit == Suit.NO_TRUMP )
 		{
 			// look at each card
 			for( int i = 0; i < hand.size(); i++ )
@@ -109,7 +109,7 @@ public class Game
 				Card card = hand.get(i);
 				
 				// if the next card is higher than the current best
-				if( card.getRank() > bestCard.getRank() )
+				if( card.getRank().ordinal() > bestCard.getRank().ordinal() )
 				{
 					// it is now the next best card
 					bestCard = hand.get(i);
@@ -119,7 +119,7 @@ public class Game
 		else
 		{
 			// if it's a misere hand
-			if( this.misere == MISERE || this.misere == OPEN_MISERE )
+			if( misere == MISERE || misere == OPEN_MISERE )
 			{
 				//
 			}
@@ -130,14 +130,14 @@ public class Game
 					Card card = hand.get(i);
 					
 					// if the next card is a trump and the best isn't a trump
-					if( card.getSuit() == trump && bestCard.getSuit() != this.trump )
+					if( card.getSuit() == trumpSuit && bestCard.getSuit() != trumpSuit )
 					{
 						// the next card is the next best
 						bestCard = card;
 					}
 					else
 					{
-						if( card.getSuit() == bestCard.getSuit() && card.getRank() > bestCard.getRank() )
+						if( card.getSuit() == bestCard.getSuit() && card.getRank().ordinal() > bestCard.getRank().ordinal() )
 						{
 							bestCard = card;
 						}
@@ -147,5 +147,21 @@ public class Game
 		}
 		
 		return winner;
+	}
+	
+	public void bidding()
+	{
+		//
+	}
+	
+	public void play()
+	{
+		deal();
+		bidding();
+		
+		for( int i = 0; i < NUMBER_OF_HANDS; i++ )
+		{
+			hand();
+		}
 	}
 }
