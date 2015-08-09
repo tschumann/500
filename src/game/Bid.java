@@ -22,4 +22,9 @@ public class Bid
 	{
 		return this.suit;
 	}
+	
+	public boolean isBetter(Bid bid)
+	{
+		return false;
+	}
 }

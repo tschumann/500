@@ -10,6 +10,11 @@ public class AIPlayer extends Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	
+	public AIPlayer(int team)
+	{
+		super(team);
+	}
+	
 	public Bid bid(Bid previousBid)
 	{
 		int spades = numberOfSuit(Suit.SPADE);
@@ -32,7 +37,7 @@ public class AIPlayer extends Player implements IPlayer
 			// if we have the joker
 			if( hasJoker() )
 			{
-			// we can definitely win a hand with it, so increment the bid
+				// we can definitely win a hand with it, so increment the bid
 				number++;
 			}
 		}
@@ -45,9 +50,24 @@ public class AIPlayer extends Player implements IPlayer
 		return this.hand.get(0);
 	}
 	
+	public ArrayList<Card> processKitty(ArrayList<Card> kitty)
+	{
+		ArrayList<Card> disposals = new ArrayList<Card>(3);
+		
+		for( Card card: kitty )
+		{
+			if( card.getRank() == Card.Rank.JOKER )
+			{
+				// TODO: find the worst card and swap it for the Joker
+			}
+		}
+		
+		return disposals;
+	}
+	
 	private boolean hasJoker()
 	{
-		for (Card card: hand)
+		for( Card card: hand )
 		{
 			if( card.getSuit() == Game.KEPT_JOKER_SUIT)
 			{

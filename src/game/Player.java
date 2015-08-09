@@ -9,11 +9,13 @@ public class Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	private boolean isDealer;
+	private int team;
 	
-	public Player()
+	public Player(int team)
 	{
-		hand = new ArrayList<Card>(Game.HAND_SIZE);
-		isDealer = false;
+		this.hand = new ArrayList<Card>(Game.HAND_SIZE);
+		this.isDealer = false;
+		this.team = team;
 	}
 	
 	public boolean getIsDealer()

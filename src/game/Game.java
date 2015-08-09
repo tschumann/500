@@ -21,7 +21,7 @@ public class Game
 	
 	private ArrayList<Card> kitty;
 	private Deck deck;
-	private IPlayer[] players;
+	private ArrayList<IPlayer> players;
 	private int[] playerOrder;
 	private Suit trumpSuit;
 	private int misere;
@@ -30,8 +30,15 @@ public class Game
 	{
 		kitty = new ArrayList<Card>(KITTY_SIZE);
 		deck = new Deck(true);
-		// TODO: add support for AIPlayers
-		players = new Player[4];
+		players = new ArrayList<IPlayer>(4);
+		// TODO: allow multiple human players?
+		players.add(new Player(0));
+		
+		for( int i = 1; i < 4; i++ )
+		{
+			players.add(new AIPlayer(i % 2));
+		}
+		
 		trumpSuit = Suit.NO_TRUMP;
 		misere = NONE;
 		
@@ -50,34 +57,34 @@ public class Game
 	public void deal()
 	{
 		// deal three cards to each player
-		for( int i = 0; i < players.length; i++ )
+		for( int i = 0; i < players.size(); i++ )
 		{
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
 		kitty.add(deck.draw(false));
 		
 		// deal four cards to each player
-		for( int i = 0; i < players.length; i++ )
+		for( int i = 0; i < players.size(); i++ )
 		{
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
 		kitty.add(deck.draw(false));
 		
 		// deal three cards to each player
-		for( int i = 0; i < players.length; i++ )
+		for( int i = 0; i < players.size(); i++ )
 		{
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
-			players[i].receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
@@ -90,14 +97,14 @@ public class Game
 		// let the best card is the first card by default
 		Card bestCard = hand.get(0);
 		// let the winning player be the player who played the first card be default
-		IPlayer winner = this.players[this.playerOrder[0]];
+		IPlayer winner = this.players.get(this.playerOrder[0]);
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
 			// get the currently played cards
 			Card played[] = hand.toArray(new Card[hand.size()]);
 			// get the next player to play a card based on the already dealt cards
-			hand.add(this.players[i].play(played));
+			hand.add(this.players.get(i).play(played));
 		}
 		
 		// if it's no trumps
@@ -152,7 +159,7 @@ public class Game
 	public Bid bidding()
 	{
 		// TODO: get the player with the highest bid, then reorder the players to make them first, the person on the other team next etc
-		return players[0].bid();
+		return players.get(0).bid();
 	}
 	
 	public ArrayList<Card> kitty(IPlayer player)
@@ -164,7 +171,7 @@ public class Game
 	{
 		deal();
 		Bid bid = bidding();
-		kitty = kitty(players[0]);
+		kitty = kitty(players.get(0));
 		
 		for( int i = 0; i < NUMBER_OF_HANDS; i++ )
 		{
