@@ -43,4 +43,9 @@ public class Player implements IPlayer
 	{
 		return this.hand.get(0);
 	}
+	
+	public ArrayList<Card> processKitty(ArrayList<Card> kitty)
+	{
+		return kitty;
+	}
 }

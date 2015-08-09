@@ -149,15 +149,22 @@ public class Game
 		return winner;
 	}
 	
-	public void bidding()
+	public Bid bidding()
 	{
-		//
+		// TODO: get the player with the highest bid, then reorder the players to make them first, the person on the other team next etc
+		return players[0].bid();
+	}
+	
+	public ArrayList<Card> kitty(IPlayer player)
+	{
+		return player.processKitty(kitty);
 	}
 	
 	public void play()
 	{
 		deal();
-		bidding();
+		Bid bid = bidding();
+		kitty = kitty(players[0]);
 		
 		for( int i = 0; i < NUMBER_OF_HANDS; i++ )
 		{
