@@ -20,7 +20,12 @@ public class Player implements IPlayer
 	
 	public boolean getIsDealer()
 	{
-		return isDealer;
+		return this.isDealer;
+	}
+	
+	public int getTeam()
+	{
+		return this.team;
 	}
 	
 	public void setIsDealer(boolean isDealer)
