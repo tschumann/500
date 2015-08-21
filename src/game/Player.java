@@ -43,7 +43,7 @@ public class Player implements IPlayer
 		int number = 6;
 		Suit suit = Suit.SPADE;
 		
-		return new Bid(number, suit);
+		return new Bid(number, suit, this);
 	}
 	
 	public Card play(Card[] played)

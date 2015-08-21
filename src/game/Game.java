@@ -12,6 +12,8 @@ public class Game
 	public static final int HAND_SIZE = 10;
 	public static final int NUMBER_OF_HANDS = 10;
 	public static final int KITTY_SIZE = 3;
+	public static final int WINNING_SCORE = 500;
+	public static final int LOSING_SCORE = -500;
 	public static final Suit REMOVED_JOKER_SUIT = Suit.BLACK;
 	public static final Suit KEPT_JOKER_SUIT = Suit.RED;
 	
@@ -25,12 +27,15 @@ public class Game
 	private int[] playerOrder;
 	private Suit trumpSuit;
 	private int misere;
+	// TODO: make a team class?
+	private int teamOneScore;
+	private int teamTwoScore;
 	
 	public Game(int bots)
 	{
-		kitty = new ArrayList<Card>(KITTY_SIZE);
-		deck = new Deck(true);
-		players = new ArrayList<IPlayer>(4);
+		this.kitty = new ArrayList<Card>(KITTY_SIZE);
+		this.deck = new Deck(true);
+		this.players = new ArrayList<IPlayer>(4);
 		// TODO: allow multiple human players?
 		players.add(new Player(0));
 		
@@ -41,6 +46,9 @@ public class Game
 		
 		trumpSuit = Suit.NO_TRUMP;
 		misere = NONE;
+		
+		this.teamOneScore = 0;
+		this.teamTwoScore = 0;
 		
 		// remove the unused cards from the deck
 		deck.remove(Suit.SPADE, Rank.TWO);
@@ -169,13 +177,70 @@ public class Game
 	
 	public void play()
 	{
+		// to keep track of who wins each hand
+		ArrayList<IPlayer> winners = new ArrayList<IPlayer>(NUMBER_OF_HANDS);
+		int teamOneWins = 0;
+		int teamTwoWins = 0;
+		
 		deal();
 		Bid bid = bidding();
-		kitty = kitty(players.get(0));
+		kitty(players.get(0));
 		
 		for( int i = 0; i < NUMBER_OF_HANDS; i++ )
 		{
-			hand();
+			winners.add(hand());
+		}
+		
+		for( IPlayer winner: winners )
+		{
+			if( winner.getTeam() == 1 )
+			{
+				teamOneWins += 1;
+			}
+			else
+			{
+				teamTwoWins += 1;
+			}
+		}
+		
+		if( players.get(0).getTeam() == 1 )
+		{
+			if( teamOneWins >= bid.getNumber() )
+			{
+				// TODO: the bid was met
+			}
+			else
+			{
+				// TODO: the bid failed
+			}
+		}
+		else
+		{
+			if( teamTwoWins >= bid.getNumber() )
+			{
+				// TODO: the bid was met
+			}
+			else
+			{
+				// TODO: the bid failed
+			}
+		}
+		
+		if( teamOneScore >= WINNING_SCORE )
+		{
+			// TODO:
+		}
+		else if( teamTwoScore >= WINNING_SCORE )
+		{
+			// TODO:
+		}
+		else if( teamOneScore <= LOSING_SCORE )
+		{
+			// TODO:
+		}
+		else if( teamTwoScore <= LOSING_SCORE )
+		{
+			// TODO:
 		}
 	}
 }

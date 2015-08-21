@@ -42,7 +42,7 @@ public class AIPlayer extends Player implements IPlayer
 			}
 		}
 		
-		return new Bid(number, suit);
+		return new Bid(number, suit, this);
 	}
 	
 	public Card play()

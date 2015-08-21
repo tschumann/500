@@ -8,8 +8,9 @@ public class Bid
 	
 	private int number;
 	private Suit suit;
+	private IPlayer player;
 	
-	public Bid(int number, Suit suit)
+	public Bid(int number, Suit suit, IPlayer player)
 	{
 		assert number < MIN_NUMBER;
 		assert suit != Suit.RED;
@@ -17,6 +18,7 @@ public class Bid
 
 		this.number = number;
 		this.suit = suit;
+		this.player = player;
 	}
 	
 	public int getNumber()
@@ -27,6 +29,11 @@ public class Bid
 	public Suit getSuit()
 	{
 		return this.suit;
+	}
+	
+	public IPlayer getPlayer()
+	{
+		return this.player;
 	}
 	
 	/*

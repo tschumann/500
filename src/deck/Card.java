@@ -49,4 +49,12 @@ public class Card
 	{
 		return suit;
 	}
+	
+	/*
+	 * Return true if this card is better than the given card.
+	 */
+	public boolean isBetter(Card card)
+	{
+		return false;
+	}
 }
