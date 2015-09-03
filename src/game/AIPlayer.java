@@ -10,7 +10,7 @@ public class AIPlayer extends Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	
-	public AIPlayer(int team)
+	public AIPlayer(Team team)
 	{
 		super(team);
 	}

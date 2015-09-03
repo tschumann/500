@@ -24,31 +24,30 @@ public class Game
 	private ArrayList<Card> kitty;
 	private Deck deck;
 	private ArrayList<IPlayer> players;
+	private ArrayList<Team> teams;
 	private int[] playerOrder;
 	private Suit trumpSuit;
 	private int misere;
-	// TODO: make a team class?
-	private int teamOneScore;
-	private int teamTwoScore;
 	
 	public Game(int bots)
 	{
 		this.kitty = new ArrayList<Card>(KITTY_SIZE);
 		this.deck = new Deck(true);
 		this.players = new ArrayList<IPlayer>(4);
+		this.teams = new ArrayList<Team>(2);
+		this.teams.add(new Team(1));
+		this.teams.add(new Team(2));
+		
 		// TODO: allow multiple human players?
-		players.add(new Player(0));
+		players.add(new Player(this.teams.get(0)));
 		
 		for( int i = 1; i < 4; i++ )
 		{
-			players.add(new AIPlayer(i % 2));
+			players.add(new AIPlayer(this.teams.get(i % 2)));
 		}
 		
 		trumpSuit = Suit.NO_TRUMP;
 		misere = NONE;
-		
-		this.teamOneScore = 0;
-		this.teamTwoScore = 0;
 		
 		// remove the unused cards from the deck
 		deck.remove(Suit.SPADE, Rank.TWO);
@@ -179,8 +178,6 @@ public class Game
 	{
 		// to keep track of who wins each hand
 		ArrayList<IPlayer> winners = new ArrayList<IPlayer>(NUMBER_OF_HANDS);
-		int teamOneWins = 0;
-		int teamTwoWins = 0;
 		
 		deal();
 		Bid bid = bidding();
@@ -193,19 +190,19 @@ public class Game
 		
 		for( IPlayer winner: winners )
 		{
-			if( winner.getTeam() == 1 )
+			if( winner.getTeam().getId() == 1 )
 			{
-				teamOneWins += 1;
+				this.team1().addWin();
 			}
 			else
 			{
-				teamTwoWins += 1;
+				this.team2().addWin();
 			}
 		}
 		
-		if( players.get(0).getTeam() == 1 )
+		if( players.get(0).getTeam().getId() == 1 )
 		{
-			if( teamOneWins >= bid.getNumber() )
+			if( this.team1().getWins() >= bid.getNumber() )
 			{
 				// TODO: the bid was met
 			}
@@ -216,7 +213,7 @@ public class Game
 		}
 		else
 		{
-			if( teamTwoWins >= bid.getNumber() )
+			if( this.team2().getWins() >= bid.getNumber() )
 			{
 				// TODO: the bid was met
 			}
@@ -226,21 +223,31 @@ public class Game
 			}
 		}
 		
-		if( teamOneScore >= WINNING_SCORE )
+		if( this.team1().getScore() >= WINNING_SCORE )
 		{
 			// TODO:
 		}
-		else if( teamTwoScore >= WINNING_SCORE )
+		else if( this.team2().getScore() >= WINNING_SCORE )
 		{
 			// TODO:
 		}
-		else if( teamOneScore <= LOSING_SCORE )
+		else if( this.team1().getScore() <= LOSING_SCORE )
 		{
 			// TODO:
 		}
-		else if( teamTwoScore <= LOSING_SCORE )
+		else if( this.team2().getScore() <= LOSING_SCORE )
 		{
 			// TODO:
 		}
+	}
+	
+	private Team team1()
+	{
+		return this.teams.get(0);
+	}
+	
+	private Team team2()
+	{
+		return this.teams.get(1);
 	}
 }

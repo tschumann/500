@@ -9,9 +9,9 @@ public class Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	private boolean isDealer;
-	private int team;
+	private Team team;
 	
-	public Player(int team)
+	public Player(Team team)
 	{
 		this.hand = new ArrayList<Card>(Game.HAND_SIZE);
 		this.isDealer = false;
@@ -23,7 +23,7 @@ public class Player implements IPlayer
 		return this.isDealer;
 	}
 	
-	public int getTeam()
+	public Team getTeam()
 	{
 		return this.team;
 	}
