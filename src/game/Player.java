@@ -10,12 +10,14 @@ public class Player implements IPlayer
 	private ArrayList<Card> hand;
 	private boolean isDealer;
 	private Team team;
+	private Game game;
 	
-	public Player(Team team)
+	public Player(Team team, Game game)
 	{
 		this.hand = new ArrayList<Card>(Game.HAND_SIZE);
 		this.isDealer = false;
 		this.team = team;
+		this.game = game;
 	}
 	
 	public boolean getIsDealer()
@@ -46,7 +48,7 @@ public class Player implements IPlayer
 		return new Bid(number, suit, this);
 	}
 	
-	public Card play(Card[] played)
+	public Card play(ArrayList<Card> played)
 	{
 		return this.hand.get(0);
 	}

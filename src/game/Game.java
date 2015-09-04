@@ -21,13 +21,16 @@ public class Game
 	public static final int MISERE = 102;
 	public static final int OPEN_MISERE = 103;
 	
-	private ArrayList<Card> kitty;
 	private Deck deck;
+	private ArrayList<Card> kitty;
+	private ArrayList<Card> hand;
 	private ArrayList<IPlayer> players;
 	private ArrayList<Team> teams;
-	private int[] playerOrder;
 	private Suit trumpSuit;
 	private int misere;
+	
+	// TODO: just reorder this.players?
+	private int[] playerOrder;
 	
 	public Game(int bots)
 	{
@@ -39,11 +42,11 @@ public class Game
 		this.teams.add(new Team(2));
 		
 		// TODO: allow multiple human players?
-		players.add(new Player(this.teams.get(0)));
+		players.add(new Player(this.teams.get(0), this));
 		
 		for( int i = 1; i < 4; i++ )
 		{
-			players.add(new AIPlayer(this.teams.get(i % 2)));
+			players.add(new AIPlayer(this.teams.get(i % 2), this));
 		}
 		
 		trumpSuit = Suit.NO_TRUMP;
@@ -108,10 +111,9 @@ public class Game
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
-			// get the currently played cards
-			Card played[] = hand.toArray(new Card[hand.size()]);
-			// get the next player to play a card based on the already dealt cards
-			hand.add(this.players.get(i).play(played));
+			// get the player to play a card based on the currently played cards,
+			// then add the card they played to the list of currently played cards
+			this.hand.add(this.players.get(i).play(this.hand));
 		}
 		
 		// if it's no trumps

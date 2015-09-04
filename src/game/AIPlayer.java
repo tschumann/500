@@ -10,9 +10,9 @@ public class AIPlayer extends Player implements IPlayer
 {
 	private ArrayList<Card> hand;
 	
-	public AIPlayer(Team team)
+	public AIPlayer(Team team, Game game)
 	{
-		super(team);
+		super(team, game);
 	}
 	
 	public Bid bid(Bid previousBid)
@@ -45,7 +45,7 @@ public class AIPlayer extends Player implements IPlayer
 		return new Bid(number, suit, this);
 	}
 	
-	public Card play()
+	public Card play(ArrayList<Card> played)
 	{
 		return this.hand.get(0);
 	}
@@ -69,7 +69,7 @@ public class AIPlayer extends Player implements IPlayer
 	{
 		for( Card card: hand )
 		{
-			if( card.getSuit() == Game.KEPT_JOKER_SUIT)
+			if( card.getSuit() == Game.KEPT_JOKER_SUIT )
 			{
 				return true;
 			}
@@ -99,6 +99,7 @@ public class AIPlayer extends Player implements IPlayer
 		
 		for( int i = 0; i < hand.size(); i++ )
 		{
+			// Jack or better is considered high
 			if( hand.get(i).getRank().ordinal() >= Rank.JACK.ordinal() )
 			{
 				count++;

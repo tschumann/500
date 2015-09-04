@@ -10,6 +10,6 @@ public interface IPlayer
 	public Team getTeam();
 	public Bid bid();
 	public void receive(Card card);
-	public Card play(Card[] played);
+	public Card play(ArrayList<Card> played);
 	public ArrayList<Card> processKitty(ArrayList<Card> kitty);
 }
