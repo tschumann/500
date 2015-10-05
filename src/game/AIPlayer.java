@@ -8,8 +8,6 @@ import deck.Card.Suit;
 
 public class AIPlayer extends Player implements IPlayer 
 {
-	private ArrayList<Card> hand;
-	
 	public AIPlayer(Team team, Game game)
 	{
 		super(team, game);
@@ -22,7 +20,7 @@ public class AIPlayer extends Player implements IPlayer
 		int clubs = numberOfSuit(Suit.CLUB);
 		int hearts = numberOfSuit(Suit.HEART);
 		int highCards = numberOfHighCards();
-		int number = 0;
+		int number = 6;
 		Suit suit = Suit.SPADE;
 		
 		// if we have a lot of high cards
@@ -47,6 +45,7 @@ public class AIPlayer extends Player implements IPlayer
 	
 	public Card play(ArrayList<Card> played)
 	{
+		// TODO: find the most appropriate card based on what has been played
 		return this.hand.get(0);
 	}
 	
