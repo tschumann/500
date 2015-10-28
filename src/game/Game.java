@@ -116,6 +116,11 @@ public class Game
 			this.hand.add(this.players.get(i).play(this.hand));
 		}
 		
+		for( int i = 0; i < playerOrder.length; i++ )
+		{
+			this.players.get(i).seePlayedHand(this.hand);
+		}
+		
 		// if it's no trumps
 		if( trumpSuit == Suit.NO_TRUMP )
 		{

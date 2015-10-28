@@ -11,5 +11,6 @@ public interface IPlayer
 	public Bid bid();
 	public void receive(Card card);
 	public Card play(ArrayList<Card> played);
+	public void seePlayedHand(ArrayList<Card> hand);
 	public ArrayList<Card> processKitty(ArrayList<Card> kitty);
 }

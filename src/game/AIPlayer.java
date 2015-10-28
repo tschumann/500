@@ -8,9 +8,12 @@ import deck.Card.Suit;
 
 public class AIPlayer extends Player implements IPlayer 
 {
+	private ArrayList<Card> memory;
+	
 	public AIPlayer(Team team, Game game)
 	{
 		super(team, game);
+		memory = new ArrayList<Card>();
 	}
 	
 	public Bid bid(Bid previousBid)
@@ -47,6 +50,11 @@ public class AIPlayer extends Player implements IPlayer
 	{
 		// TODO: find the most appropriate card based on what has been played
 		return this.hand.get(0);
+	}
+	
+	public void seePlayedHand(ArrayList<Card> hand)
+	{
+		// TODO: remember memorable cards - add a skill attribute to affect this?
 	}
 	
 	public ArrayList<Card> processKitty(ArrayList<Card> kitty)

@@ -25,6 +25,14 @@ public class Player extends AbstractPlayer
 		return this.hand.get(0);
 	}
 	
+	/*
+	 * Do nothing - the physical player will
+	 * see and remember what they can.
+	 */
+	public void seePlayedHand(ArrayList<Card> hand)
+	{
+	}
+	
 	public ArrayList<Card> processKitty(ArrayList<Card> kitty)
 	{
 		return kitty;
