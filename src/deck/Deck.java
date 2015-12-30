@@ -96,7 +96,7 @@ public class Deck
 	{
 		Card card = null;
 		
-		if( leave == true )
+		if( leave )
 		{
 			card = deck.get(index);
 		}
@@ -128,11 +128,12 @@ public class Deck
 	{
 		ArrayList<Card> shuffled = new ArrayList<Card>(INITIAL_DECK_SIZE);
 		
-		for( int i = 0; i < deck.size(); i++ )
+		for( int i = 0; i < this.deck.size(); i++ )
 		{
-			shuffled.add(this.draw(false, util.Util.random(0, deck.size())));
+			// draw a card with random index and it add it to the shuffled array
+			shuffled.add(this.draw(false, util.Util.random(0, this.deck.size())));
 		}
 		
-		deck = shuffled;
+		this.deck = shuffled;
 	}
 }

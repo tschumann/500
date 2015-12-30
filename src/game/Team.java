@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Team
 {
+	public static final int MAX_PLAYERS = 2;
+	
 	private int id;
 	private int score;
 	private int wins;
@@ -32,8 +34,14 @@ public class Team
 		return this.wins;
 	}
 	
-	public void addPlayer(IPlayer player)
+	public void addPlayer(IPlayer player) throws Exception
 	{
+		// if there's an attempt to add too many players
+		if( this.players.size() == MAX_PLAYERS )
+		{
+			throw new Exception();
+		}
+		
 		this.players.add(player);
 	}
 	
