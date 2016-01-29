@@ -1,0 +1,3 @@
+[submodule "src/java_card"]
+	path = src/java_card
+	url = https://github.com/tschumann/java_card
