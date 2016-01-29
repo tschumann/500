@@ -1,12 +1,16 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-import deck.Card;
+import java_card.Card;
+import java_card.ICard;
+
+import deck.FiveHundredCardSuit;
 import deck.Card.Rank;
 import deck.Card.Suit;
 
-public class AIPlayer extends Player implements IPlayer 
+public class AIPlayer extends Player
 {
 	private ArrayList<Card> memory;
 	
@@ -18,10 +22,10 @@ public class AIPlayer extends Player implements IPlayer
 	
 	public Bid bid(Bid previousBid)
 	{
-		int spades = numberOfSuit(Suit.SPADE);
-		int diamonds = numberOfSuit(Suit.DIAMOND);
-		int clubs = numberOfSuit(Suit.CLUB);
-		int hearts = numberOfSuit(Suit.HEART);
+		int spades = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.SPADE);
+		int diamonds = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.DIAMOND);
+		int clubs = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.CLUB);
+		int hearts = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.HEART);
 		int highCards = numberOfHighCards();
 		int number = 6;
 		Suit suit = Suit.SPADE;
@@ -46,27 +50,29 @@ public class AIPlayer extends Player implements IPlayer
 		return new Bid(number, suit, this);
 	}
 	
-	public Card play(ArrayList<Card> played)
+	public ICard play(Collection<ICard> played)
 	{
 		// TODO: find the most appropriate card based on what has been played
 		return this.hand.get(0);
 	}
 	
-	public void seePlayedHand(ArrayList<Card> hand)
+	public void seePlayedHand(Collection<ICard> hand)
 	{
 		// TODO: remember memorable cards - add a skill attribute to affect this?
 	}
 	
-	public ArrayList<Card> processKitty(ArrayList<Card> kitty)
+	public ArrayList<ICard> processKitty(ArrayList<ICard> kitty)
 	{
-		ArrayList<Card> disposals = new ArrayList<Card>(3);
+		ArrayList<ICard> disposals = new ArrayList<ICard>(3);
 		
-		for( Card card: kitty )
+		for( ICard card: kitty )
 		{
-			if( card.getRank() == Card.Rank.JOKER )
+			/*
+			if( card.getRank() == CardRank.JOKER )
 			{
 				// TODO: find the worst card and swap it for the Joker
 			}
+			*/
 		}
 		
 		return disposals;
@@ -74,27 +80,31 @@ public class AIPlayer extends Player implements IPlayer
 	
 	private boolean hasJoker()
 	{
-		for( Card card: hand )
+		for( ICard card: hand )
 		{
+			/*
 			if( card.getSuit() == Game.KEPT_JOKER_SUIT )
 			{
 				return true;
 			}
+			*/
 		}
 		
 		return false;
 	}
 	
-	private int numberOfSuit(Suit suit)
+	private int numberOfSuit(FiveHundredCardSuit.FiveHundredSuit suit)
 	{
 		int count = 0;
 		
 		for( int i = 0; i < hand.size(); i++ )
 		{
+			/*
 			if( hand.get(i).getSuit() == suit )
 			{
 				count++;
 			}
+			*/
 		}
 		
 		return count;

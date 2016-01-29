@@ -2,6 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+import java_card.ICard;
+import java_card.ICardPlayer;
+
 import deck.Deck;
 import deck.Card;
 import deck.Card.Rank;
@@ -22,9 +25,9 @@ public class Game
 	public static final int OPEN_MISERE = 103;
 	
 	private Deck deck;
-	private ArrayList<Card> kitty;
-	private ArrayList<Card> hand;
-	private ArrayList<IPlayer> players;
+	private ArrayList<ICard> kitty;
+	private ArrayList<ICard> hand;
+	private ArrayList<ICardPlayer> players;
 	private ArrayList<Team> teams;
 	private Suit trumpSuit;
 	private int misere;
@@ -34,9 +37,9 @@ public class Game
 	
 	public Game(int bots)
 	{
-		this.kitty = new ArrayList<Card>(KITTY_SIZE);
+		this.kitty = new ArrayList<ICard>(KITTY_SIZE);
 		this.deck = new Deck(true);
-		this.players = new ArrayList<IPlayer>(4);
+		this.players = new ArrayList<ICardPlayer>(4);
 		this.teams = new ArrayList<Team>(2);
 		this.teams.add(new Team(1));
 		this.teams.add(new Team(2));
@@ -69,45 +72,45 @@ public class Game
 		// deal three cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		kitty.add(deck.draw(false));
+		// kitty.add(deck.draw(false));
 		
 		// deal four cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		kitty.add(deck.draw(false));
+		// kitty.add(deck.draw(false));
 		
 		// deal three cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
-			players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
+			// players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		kitty.add(deck.draw(false));
+		// kitty.add(deck.draw(false));
 	}
 	
-	public IPlayer hand()
+	public ICardPlayer hand()
 	{
 		ArrayList<Card> hand = new ArrayList<Card>(4);
 		// let the best card is the first card by default
 		Card bestCard = hand.get(0);
 		// let the winning player be the player who played the first card be default
-		IPlayer winner = this.players.get(this.playerOrder[0]);
+		ICardPlayer winner = this.players.get(this.playerOrder[0]);
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
@@ -173,18 +176,18 @@ public class Game
 	public Bid bidding()
 	{
 		// TODO: get the player with the highest bid, then reorder the players to make them first, the person on the other team next etc
-		return players.get(0).bid();
+		return ((Player)players.get(0)).bid();
 	}
 	
-	public ArrayList<Card> kitty(IPlayer player)
+	public ArrayList<ICard> kitty(ICardPlayer player)
 	{
-		return player.processKitty(kitty);
+		return ((Player)player).processKitty(kitty);
 	}
 	
 	public void play()
 	{
 		// to keep track of who wins each hand
-		ArrayList<IPlayer> winners = new ArrayList<IPlayer>(NUMBER_OF_HANDS);
+		ArrayList<ICardPlayer> winners = new ArrayList<ICardPlayer>(NUMBER_OF_HANDS);
 		
 		deal();
 		Bid bid = bidding();
@@ -195,9 +198,9 @@ public class Game
 			winners.add(hand());
 		}
 		
-		for( IPlayer winner: winners )
+		for( ICardPlayer winner: winners )
 		{
-			if( winner.getTeam().getId() == 1 )
+			if( ((Player)winner).getTeam().getId() == 1 )
 			{
 				this.team1().addWin();
 			}
@@ -207,7 +210,7 @@ public class Game
 			}
 		}
 		
-		if( players.get(0).getTeam().getId() == 1 )
+		if( ((Player)(players.get(0))).getTeam().getId() == 1 )
 		{
 			if( this.team1().getWins() >= bid.getNumber() )
 			{

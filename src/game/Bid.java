@@ -1,5 +1,6 @@
 package game;
 
+import java_card.ICardPlayer;
 import deck.Card.Suit;
 
 public class Bid
@@ -8,9 +9,9 @@ public class Bid
 	
 	private int number;
 	private Suit suit;
-	private IPlayer player;
+	private ICardPlayer player;
 	
-	public Bid(int number, Suit suit, IPlayer player)
+	public Bid(int number, Suit suit, ICardPlayer player)
 	{
 		assert number < MIN_NUMBER;
 		assert suit != Suit.RED;
@@ -31,7 +32,7 @@ public class Bid
 		return this.suit;
 	}
 	
-	public IPlayer getPlayer()
+	public ICardPlayer getPlayer()
 	{
 		return this.player;
 	}

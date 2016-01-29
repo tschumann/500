@@ -1,8 +1,10 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-import deck.Card;
+import java_card.ICard;
+
 import deck.Card.Suit;
 
 public class Player extends AbstractPlayer
@@ -20,20 +22,30 @@ public class Player extends AbstractPlayer
 		return new Bid(number, suit, this);
 	}
 	
-	public Card play(ArrayList<Card> played)
+	public void receive(ICard card)
+	{
+		this.hand.add(card);		
+	}
+	
+	public ICard play(Collection<ICard> played)
 	{
 		return this.hand.get(0);
+	}
+	
+	public Team getTeam()
+	{
+		return this.team;
 	}
 	
 	/*
 	 * Do nothing - the physical player will
 	 * see and remember what they can.
 	 */
-	public void seePlayedHand(ArrayList<Card> hand)
+	public void seePlayedHand(Collection<ICard> hand)
 	{
 	}
 	
-	public ArrayList<Card> processKitty(ArrayList<Card> kitty)
+	public ArrayList<ICard> processKitty(ArrayList<ICard> kitty)
 	{
 		return kitty;
 	}
