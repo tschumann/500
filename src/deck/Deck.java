@@ -2,20 +2,21 @@ package deck;
 
 import java.util.ArrayList;
 
-import deck.Card.Rank;
-import deck.Card.Suit;
+import java_card.ICard;
 
 public class Deck
 {
 	public static final int INITIAL_DECK_SIZE = 54;
 	
-	private ArrayList<Card> deck;
+	private ArrayList<ICard> deck;
 	
 	public Deck(boolean jokers)
 	{
-		deck = new ArrayList<Card>(INITIAL_DECK_SIZE);
+		deck = new ArrayList<ICard>(INITIAL_DECK_SIZE);
 		
 		// easier and probably faster to just add each card manually
+		
+		/*
 		if( jokers )
 		{
 			deck.add(new Card(Suit.BLACK, Rank.JOKER));
@@ -73,17 +74,13 @@ public class Deck
 		deck.add(new Card(Suit.HEART, Rank.JACK));
 		deck.add(new Card(Suit.HEART, Rank.QUEEN));
 		deck.add(new Card(Suit.HEART, Rank.KING));
-	}
-	
-	public int count()
-	{
-		return deck.size();
+		*/
 	}
 	
 	/*
 	 * @arg leave: whether or not to leave the card in the deck after drawing
 	 */
-	public Card draw(boolean leave)
+	public FiveHundredCard draw(boolean leave)
 	{
 		return draw(leave, 0);
 	}
@@ -92,9 +89,9 @@ public class Deck
 	 * @arg leave: whether or not to leave the card in the deck after drawing
 	 * @arg index: what number card to draw
 	 */
-	public Card draw(boolean leave, int index)
+	public FiveHundredCard draw(boolean leave, int index)
 	{
-		Card card = null;
+		ICard card = null;
 		
 		if( leave )
 		{
@@ -105,15 +102,15 @@ public class Deck
 			card = deck.remove(index);
 		}
 		
-		return card;
+		return (FiveHundredCard)card;
 	}
 	
-	public void remove(Suit suit, Rank rank)
+	public void remove(FiveHundredCardSuit suit, FiveHundredCardRank rank)
 	{
 		for( int i = 0; i < deck.size(); i++ )
 		{
 			// get the card at the given index
-			Card card = this.draw(true, i);
+			ICard card = this.draw(true, i);
 			
 			// if it's the card that needs to be removed
 			if( card.getSuit() == suit && card.getRank() == rank )
@@ -126,7 +123,7 @@ public class Deck
 	
 	public void shuffle()
 	{
-		ArrayList<Card> shuffled = new ArrayList<Card>(INITIAL_DECK_SIZE);
+		ArrayList<ICard> shuffled = new ArrayList<ICard>(INITIAL_DECK_SIZE);
 		
 		for( int i = 0; i < this.deck.size(); i++ )
 		{

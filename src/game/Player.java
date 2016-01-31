@@ -3,9 +3,10 @@ package game;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import java_card.ICard;
+import deck.FiveHundredCardSuit;
+import deck.FiveHundredCardSuit.Suit;
 
-import deck.Card.Suit;
+import java_card.ICard;
 
 public class Player extends AbstractPlayer
 {
@@ -17,7 +18,7 @@ public class Player extends AbstractPlayer
 	public Bid bid()
 	{
 		int number = 6;
-		Suit suit = Suit.SPADE;
+		FiveHundredCardSuit suit = new FiveHundredCardSuit(Suit.SPADE);
 		
 		return new Bid(number, suit, this);
 	}

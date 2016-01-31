@@ -6,9 +6,7 @@ import java_card.ICard;
 import java_card.ICardPlayer;
 
 import deck.Deck;
-import deck.Card;
-import deck.Card.Rank;
-import deck.Card.Suit;
+import deck.FiveHundredCardSuit.Suit;
 
 public class Game
 {
@@ -17,8 +15,8 @@ public class Game
 	public static final int KITTY_SIZE = 3;
 	public static final int WINNING_SCORE = 500;
 	public static final int LOSING_SCORE = -500;
-	public static final Suit REMOVED_JOKER_SUIT = Suit.BLACK;
-	public static final Suit KEPT_JOKER_SUIT = Suit.RED;
+	// public static final Suit REMOVED_JOKER_SUIT = Suit.BLACK;
+	// public static final Suit KEPT_JOKER_SUIT = Suit.RED;
 	
 	public static final int NONE = 101;
 	public static final int MISERE = 102;
@@ -56,6 +54,8 @@ public class Game
 		misere = NONE;
 		
 		// remove the unused cards from the deck
+		
+		/*
 		deck.remove(Suit.SPADE, Rank.TWO);
 		deck.remove(Suit.DIAMOND, Rank.TWO);
 		deck.remove(Suit.CLUB, Rank.TWO);
@@ -65,6 +65,7 @@ public class Game
 		deck.remove(Suit.CLUB, Rank.THREE);
 		deck.remove(Suit.HEART, Rank.THREE);
 		deck.remove(REMOVED_JOKER_SUIT, Rank.JOKER);
+		*/
 	}
 	
 	public void deal()
@@ -106,9 +107,9 @@ public class Game
 	
 	public ICardPlayer hand()
 	{
-		ArrayList<Card> hand = new ArrayList<Card>(4);
+		ArrayList<ICard> hand = new ArrayList<ICard>(4);
 		// let the best card is the first card by default
-		Card bestCard = hand.get(0);
+		ICard bestCard = hand.get(0);
 		// let the winning player be the player who played the first card be default
 		ICardPlayer winner = this.players.get(this.playerOrder[0]);
 		
@@ -130,7 +131,7 @@ public class Game
 			// look at each card
 			for( int i = 0; i < hand.size(); i++ )
 			{
-				Card card = hand.get(i);
+				ICard card = hand.get(i);
 				
 				// if the next card is higher than the current best
 				if( card.getRank().ordinal() > bestCard.getRank().ordinal() )
@@ -151,9 +152,11 @@ public class Game
 			{
 				for( int i = 0; i < hand.size(); i++ )
 				{
-					Card card = hand.get(i);
+					ICard card = hand.get(i);
 					
 					// if the next card is a trump and the best isn't a trump
+					
+					/*
 					if( card.getSuit() == trumpSuit && bestCard.getSuit() != trumpSuit )
 					{
 						// the next card is the next best
@@ -166,6 +169,7 @@ public class Game
 							bestCard = card;
 						}
 					}
+					*/
 				}
 			}
 		}

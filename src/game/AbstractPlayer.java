@@ -26,18 +26,21 @@ public abstract class AbstractPlayer implements ICardPlayer
 		return this.isDealer;
 	}
 	
-	public Team getTeam()
-	{
-		return this.team;
-	}
-	
 	public void setIsDealer(boolean isDealer)
 	{
 		this.isDealer = isDealer;
+	}
+	
+	public Team getTeam()
+	{
+		return this.team;
 	}
 	
 	public void receive(Card card)
 	{
 		this.hand.add(card);
 	}
+	
+	public abstract Bid bid();
+	public abstract ArrayList<ICard> processKitty(ArrayList<ICard> kitty);
 }

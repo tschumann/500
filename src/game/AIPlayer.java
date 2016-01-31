@@ -3,38 +3,36 @@ package game;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import java_card.Card;
 import java_card.ICard;
 
+import deck.FiveHundredCard;
 import deck.FiveHundredCardSuit;
-import deck.Card.Rank;
-import deck.Card.Suit;
 
 public class AIPlayer extends Player
 {
-	private ArrayList<Card> memory;
+	private ArrayList<ICard> memory;
 	
 	public AIPlayer(Team team, Game game)
 	{
 		super(team, game);
-		memory = new ArrayList<Card>();
+		this.memory = new ArrayList<ICard>();
 	}
 	
 	public Bid bid(Bid previousBid)
 	{
-		int spades = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.SPADE);
-		int diamonds = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.DIAMOND);
-		int clubs = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.CLUB);
-		int hearts = numberOfSuit(FiveHundredCardSuit.FiveHundredSuit.HEART);
+		int spades = numberOfSuit(FiveHundredCard.spades);
+		int diamonds = numberOfSuit(FiveHundredCard.diamonds);
+		int clubs = numberOfSuit(FiveHundredCard.clubs);
+		int hearts = numberOfSuit(FiveHundredCard.hearts);
 		int highCards = numberOfHighCards();
 		int number = 6;
-		Suit suit = Suit.SPADE;
+		FiveHundredCardSuit suit = FiveHundredCard.spades;
 		
 		// if we have a lot of high cards
 		if( highCards >= 5 )
 		{
 			// bid no trumps
-			suit = Suit.NO_TRUMP;
+			suit = FiveHundredCard.notrumps;
 			number += highCards;
 		}
 		else 
@@ -93,7 +91,7 @@ public class AIPlayer extends Player
 		return false;
 	}
 	
-	private int numberOfSuit(FiveHundredCardSuit.FiveHundredSuit suit)
+	private int numberOfSuit(FiveHundredCardSuit suit)
 	{
 		int count = 0;
 		
@@ -117,10 +115,13 @@ public class AIPlayer extends Player
 		for( int i = 0; i < hand.size(); i++ )
 		{
 			// Jack or better is considered high
+			
+			/*
 			if( hand.get(i).getRank().ordinal() >= Rank.JACK.ordinal() )
 			{
 				count++;
 			}
+			*/
 		}
 		
 		return count;
