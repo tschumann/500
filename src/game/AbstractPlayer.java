@@ -3,13 +3,12 @@ package game;
 import java.util.ArrayList;
 
 import java_card.Card;
+import java_card.CardPlayer;
 import java_card.ICard;
-import java_card.ICardPlayer;
 
-public abstract class AbstractPlayer implements ICardPlayer
+public abstract class AbstractPlayer extends CardPlayer
 {
 	protected ArrayList<ICard> hand;
-	protected boolean isDealer;
 	protected Team team;
 	protected Game game;
 	
@@ -19,16 +18,6 @@ public abstract class AbstractPlayer implements ICardPlayer
 		this.isDealer = false;
 		this.team = team;
 		this.game = game;
-	}
-	
-	public boolean getIsDealer()
-	{
-		return this.isDealer;
-	}
-	
-	public void setIsDealer(boolean isDealer)
-	{
-		this.isDealer = isDealer;
 	}
 	
 	public Team getTeam()
