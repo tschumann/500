@@ -9,10 +9,10 @@ import java_card.ICard;
 public abstract class AbstractPlayer extends CardPlayer
 {
 	protected ArrayList<ICard> hand;
-	protected Team team;
+	protected FiveHundredTeam team;
 	protected Game game;
 	
-	public AbstractPlayer(Team team, Game game)
+	public AbstractPlayer(FiveHundredTeam team, Game game)
 	{
 		this.hand = new ArrayList<ICard>(Game.HAND_SIZE);
 		this.isDealer = false;
@@ -20,7 +20,7 @@ public abstract class AbstractPlayer extends CardPlayer
 		this.game = game;
 	}
 	
-	public Team getTeam()
+	public FiveHundredTeam getTeam()
 	{
 		return this.team;
 	}

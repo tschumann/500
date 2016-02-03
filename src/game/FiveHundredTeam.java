@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import java_card.ICardPlayer;
 
-public class Team
+public class FiveHundredTeam
 {
 	public static final int MAX_PLAYERS = 2;
 	
@@ -13,7 +13,7 @@ public class Team
 	private int wins;
 	private ArrayList<ICardPlayer> players;
 	
-	public Team(int id)
+	public FiveHundredTeam(int id)
 	{
 		this.id = id;
 		this.score = 0;

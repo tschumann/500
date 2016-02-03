@@ -12,7 +12,7 @@ public class AIPlayer extends Player
 {
 	private ArrayList<ICard> memory;
 	
-	public AIPlayer(Team team, Game game)
+	public AIPlayer(FiveHundredTeam team, Game game)
 	{
 		super(team, game);
 		this.memory = new ArrayList<ICard>();

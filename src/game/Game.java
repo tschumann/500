@@ -26,7 +26,7 @@ public class Game
 	private ArrayList<ICard> kitty;
 	private ArrayList<ICard> hand;
 	private ArrayList<ICardPlayer> players;
-	private ArrayList<Team> teams;
+	private ArrayList<FiveHundredTeam> teams;
 	private Suit trumpSuit;
 	private int misere;
 	
@@ -38,9 +38,9 @@ public class Game
 		this.kitty = new ArrayList<ICard>(KITTY_SIZE);
 		this.deck = new Deck(true);
 		this.players = new ArrayList<ICardPlayer>(4);
-		this.teams = new ArrayList<Team>(2);
-		this.teams.add(new Team(1));
-		this.teams.add(new Team(2));
+		this.teams = new ArrayList<FiveHundredTeam>(2);
+		this.teams.add(new FiveHundredTeam(1));
+		this.teams.add(new FiveHundredTeam(2));
 		
 		// TODO: allow multiple human players?
 		players.add(new Player(this.teams.get(0), this));
@@ -255,12 +255,12 @@ public class Game
 		}
 	}
 	
-	private Team team1()
+	private FiveHundredTeam team1()
 	{
 		return this.teams.get(0);
 	}
 	
-	private Team team2()
+	private FiveHundredTeam team2()
 	{
 		return this.teams.get(1);
 	}
