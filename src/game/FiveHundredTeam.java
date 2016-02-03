@@ -3,14 +3,14 @@ package game;
 import java.util.ArrayList;
 
 import java_card.ICardPlayer;
+import java_card.Team;
 
-public class FiveHundredTeam
+public class FiveHundredTeam extends Team
 {
 	public static final int MAX_PLAYERS = 2;
 	
 	private int id;
 	private int score;
-	private int wins;
 	private ArrayList<ICardPlayer> players;
 	
 	public FiveHundredTeam(int id)
@@ -29,11 +29,6 @@ public class FiveHundredTeam
 	public int getScore()
 	{
 		return this.score;
-	}
-	
-	public int getWins()
-	{
-		return this.wins;
 	}
 	
 	public void addPlayer(ICardPlayer player) throws Exception
