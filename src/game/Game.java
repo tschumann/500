@@ -39,8 +39,8 @@ public class Game
 		this.deck = new Deck(true);
 		this.players = new ArrayList<ICardPlayer>(4);
 		this.teams = new ArrayList<FiveHundredTeam>(2);
-		this.teams.add(new FiveHundredTeam(1));
-		this.teams.add(new FiveHundredTeam(2));
+		this.teams.add(new FiveHundredTeam(1, FiveHundredTeam.MAX_PLAYERS));
+		this.teams.add(new FiveHundredTeam(2, FiveHundredTeam.MAX_PLAYERS));
 		
 		// TODO: allow multiple human players?
 		players.add(new Player(this.teams.get(0), this));
