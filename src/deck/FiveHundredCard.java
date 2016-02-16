@@ -1,5 +1,6 @@
 package deck;
 
+import game.FiveHundredGame;
 import java_card.Card;
 
 public class FiveHundredCard extends Card
@@ -39,9 +40,17 @@ public class FiveHundredCard extends Card
 		JOKER,
 	}
 
-	@Override
-	public int compareTo(Card card) {
+	public int compareTo(Card card)
+	{
 		// TODO: implement
 		return 0;
+	}
+	
+	/*
+	 * Whether this card is of the trump suit
+	 */
+	public boolean isTrump()
+	{
+		return this.getSuit() == ((FiveHundredGame)this.game).trump();
 	}
 }

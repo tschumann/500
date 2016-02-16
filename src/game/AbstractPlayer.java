@@ -10,11 +10,11 @@ public abstract class AbstractPlayer extends CardPlayer
 {
 	protected ArrayList<ICard> hand;
 	protected FiveHundredTeam team;
-	protected Game game;
+	protected FiveHundredGame game;
 	
-	public AbstractPlayer(FiveHundredTeam team, Game game)
+	public AbstractPlayer(FiveHundredTeam team, FiveHundredGame game)
 	{
-		this.hand = new ArrayList<ICard>(Game.HAND_SIZE);
+		this.hand = new ArrayList<ICard>(FiveHundredGame.HAND_SIZE);
 		this.isDealer = false;
 		this.team = team;
 		this.game = game;

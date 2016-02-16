@@ -10,7 +10,7 @@ import java_card.ICard;
 
 public class Player extends AbstractPlayer
 {
-	public Player(FiveHundredTeam team, Game game)
+	public Player(FiveHundredTeam team, FiveHundredGame game)
 	{
 		super(team, game);
 	}

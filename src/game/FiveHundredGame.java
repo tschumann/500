@@ -6,9 +6,10 @@ import java_card.ICard;
 import java_card.ICardPlayer;
 
 import deck.Deck;
+import deck.FiveHundredCardSuit;
 import deck.FiveHundredCardSuit.Suit;
 
-public class Game
+public class FiveHundredGame
 {
 	public static final int HAND_SIZE = 10;
 	public static final int NUMBER_OF_HANDS = 10;
@@ -33,7 +34,7 @@ public class Game
 	// TODO: just reorder this.players?
 	private int[] playerOrder;
 	
-	public Game(int bots)
+	public FiveHundredGame(int bots)
 	{
 		this.kitty = new ArrayList<ICard>(KITTY_SIZE);
 		this.deck = new Deck(true);
@@ -253,6 +254,11 @@ public class Game
 		{
 			// TODO:
 		}
+	}
+	
+	public FiveHundredCardSuit trump()
+	{
+		return null;
 	}
 	
 	private FiveHundredTeam team1()
