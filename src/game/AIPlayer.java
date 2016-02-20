@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java_card.CardPlay;
 import java_card.ICard;
 
 import deck.FiveHundredCard;
@@ -48,7 +49,7 @@ public class AIPlayer extends Player
 		return new Bid(number, suit, this);
 	}
 	
-	public ICard play(Collection<ICard> played)
+	public ICard play(Collection<CardPlay> played)
 	{
 		// TODO: find the most appropriate card based on what has been played
 		return this.hand.get(0);

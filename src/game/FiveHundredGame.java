@@ -2,6 +2,8 @@ package game;
 
 import java.util.ArrayList;
 
+import java_card.CardGame;
+import java_card.CardPlay;
 import java_card.ICard;
 import java_card.ICardPlayer;
 
@@ -9,7 +11,7 @@ import deck.Deck;
 import deck.FiveHundredCardSuit;
 import deck.FiveHundredCardSuit.Suit;
 
-public class FiveHundredGame
+public class FiveHundredGame extends CardGame
 {
 	public static final int HAND_SIZE = 10;
 	public static final int NUMBER_OF_HANDS = 10;
@@ -18,6 +20,7 @@ public class FiveHundredGame
 	public static final int LOSING_SCORE = -500;
 	// public static final Suit REMOVED_JOKER_SUIT = Suit.BLACK;
 	// public static final Suit KEPT_JOKER_SUIT = Suit.RED;
+	public static final int PLAYER_COUNT = 4;
 	
 	public static final int NONE = 101;
 	public static final int MISERE = 102;
@@ -38,8 +41,8 @@ public class FiveHundredGame
 	{
 		this.kitty = new ArrayList<ICard>(KITTY_SIZE);
 		this.deck = new Deck(true);
-		this.players = new ArrayList<ICardPlayer>(4);
-		this.teams = new ArrayList<FiveHundredTeam>(2);
+		this.players = new ArrayList<ICardPlayer>(FiveHundredGame.PLAYER_COUNT);
+		this.teams = new ArrayList<FiveHundredTeam>(FiveHundredTeam.MAX_PLAYERS);
 		this.teams.add(new FiveHundredTeam(1, FiveHundredTeam.MAX_PLAYERS));
 		this.teams.add(new FiveHundredTeam(2, FiveHundredTeam.MAX_PLAYERS));
 		
@@ -108,22 +111,23 @@ public class FiveHundredGame
 	
 	public ICardPlayer hand()
 	{
-		ArrayList<ICard> hand = new ArrayList<ICard>(4);
-		// let the best card is the first card by default
+		ArrayList<CardPlay> play = new ArrayList<CardPlay>(4);
+		// let the best card be the first card by default
 		ICard bestCard = hand.get(0);
 		// let the winning player be the player who played the first card be default
 		ICardPlayer winner = this.players.get(this.playerOrder[0]);
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
+			Player player = (Player)this.players.get(i);
 			// get the player to play a card based on the currently played cards,
 			// then add the card they played to the list of currently played cards
-			this.hand.add(this.players.get(i).play(this.hand));
+			play.add(new CardPlay(player, player.play(play), this));
 		}
 		
 		for( int i = 0; i < playerOrder.length; i++ )
 		{
-			this.players.get(i).seePlayedHand(this.hand);
+			this.players.get(i).seePlayedCards(play);
 		}
 		
 		// if it's no trumps

@@ -6,6 +6,7 @@ import java.util.Collection;
 import deck.FiveHundredCardSuit;
 import deck.FiveHundredCardSuit.Suit;
 
+import java_card.CardPlay;
 import java_card.ICard;
 
 public class Player extends AbstractPlayer
@@ -28,7 +29,7 @@ public class Player extends AbstractPlayer
 		this.hand.add(card);		
 	}
 	
-	public ICard play(Collection<ICard> played)
+	public ICard play(Collection<CardPlay> played)
 	{
 		return this.hand.get(0);
 	}
@@ -42,7 +43,7 @@ public class Player extends AbstractPlayer
 	 * Do nothing - the physical player will
 	 * see and remember what they can.
 	 */
-	public void seePlayedHand(Collection<ICard> hand)
+	public void seePlayedCards(Collection<CardPlay> played)
 	{
 	}
 	
