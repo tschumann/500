@@ -51,6 +51,6 @@ public class FiveHundredCard extends Card
 	 */
 	public boolean isTrump()
 	{
-		return this.getSuit() == ((FiveHundredGame)this.game).trump();
+		return this.getSuit() == ((FiveHundredGame)this.getGame()).trump();
 	}
 }

@@ -15,7 +15,6 @@ public abstract class AbstractPlayer extends CardPlayer
 	public AbstractPlayer(FiveHundredTeam team, FiveHundredGame game)
 	{
 		this.hand = new ArrayList<ICard>(FiveHundredGame.HAND_SIZE);
-		this.isDealer = false;
 		this.team = team;
 		this.game = game;
 	}
