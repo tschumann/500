@@ -1,8 +1,8 @@
 package deck;
 
-import java_card.CardSuit;
+import java_card.ICardSuit;
 
-public class FiveHundredCardSuit implements CardSuit
+public class FiveHundredCardSuit implements ICardSuit
 {
 	public enum Suit
 	{
