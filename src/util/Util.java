@@ -11,7 +11,7 @@ public class Util
 		return generator.nextInt(max) + min;
 	}
 	
-	public static int max(int[] array)
+	public static int maxIndex(int[] array)
 	{
 		int index = 0;
 		

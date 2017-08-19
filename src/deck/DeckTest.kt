@@ -1,8 +1,7 @@
 package deck
 
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 
 class DeckTest {
 
