@@ -1,1 +1,1 @@
-java -cp "junit-4.12.jar;hamcrest-core-1.3.jar;out/production/500" org.junit.runner.JUnitCore util.UtilTest
+java -cp "junit-4.12.jar;hamcrest-core-1.3.jar;cpsuite-1.2.6.jar;out/production/500" org.junit.runner.JUnitCore test.TestRunner
