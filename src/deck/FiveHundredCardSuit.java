@@ -21,9 +21,14 @@ public class FiveHundredCardSuit implements ICardSuit
 	
 	private Suit suit;
 	
-	public FiveHundredCardSuit(Suit spade)
+	public FiveHundredCardSuit(Suit suit)
 	{
-		this.suit = spade;
+		this.suit = suit;
+	}
+
+	public Suit getSuit()
+	{
+		return suit;
 	}
 	
 	public int ordinal()
@@ -44,7 +49,8 @@ public class FiveHundredCardSuit implements ICardSuit
 		case HEART:
 			return Colour.RED;
 		}
-		
+
+		// TODO: no trumps is special
 		// should never get here - raise an exception?
 		return null;
 	}

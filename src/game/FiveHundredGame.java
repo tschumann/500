@@ -43,8 +43,8 @@ public class FiveHundredGame extends CardGame
 		this.deck = new Deck(true);
 		this.players = new ArrayList<ICardPlayer>(FiveHundredGame.PLAYER_COUNT);
 		this.teams = new ArrayList<FiveHundredTeam>(FiveHundredTeam.MAX_PLAYERS);
-		this.teams.add(new FiveHundredTeam(1, FiveHundredTeam.MAX_PLAYERS));
-		this.teams.add(new FiveHundredTeam(2, FiveHundredTeam.MAX_PLAYERS));
+		this.teams.add(new FiveHundredTeam(1));
+		this.teams.add(new FiveHundredTeam(2));
 		
 		// TODO: allow multiple human players?
 		players.add(new Player(this.teams.get(0), this));

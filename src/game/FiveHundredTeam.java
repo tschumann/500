@@ -8,7 +8,7 @@ public class FiveHundredTeam extends ScoredTeam
 	
 	protected int id;
 	
-	public FiveHundredTeam(int id, int maxPlayers)
+	public FiveHundredTeam(int id)
 	{
 		//
 	}
