@@ -57,9 +57,7 @@ public class FiveHundredGame extends CardGame
 		trumpSuit = Suit.NO_TRUMP;
 		misere = NONE;
 		
-		// remove the unused cards from the deck
-		
-		/*
+		// remove the unneeded cards from the deck
 		deck.remove(Suit.SPADE, Rank.TWO);
 		deck.remove(Suit.DIAMOND, Rank.TWO);
 		deck.remove(Suit.CLUB, Rank.TWO);
@@ -69,7 +67,6 @@ public class FiveHundredGame extends CardGame
 		deck.remove(Suit.CLUB, Rank.THREE);
 		deck.remove(Suit.HEART, Rank.THREE);
 		deck.remove(REMOVED_JOKER_SUIT, Rank.JOKER);
-		*/
 	}
 	
 	public void deal()
@@ -77,36 +74,36 @@ public class FiveHundredGame extends CardGame
 		// deal three cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		// kitty.add(deck.draw(false));
+		kitty.add(deck.draw(false));
 		
 		// deal four cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		// kitty.add(deck.draw(false));
+		kitty.add(deck.draw(false));
 		
 		// deal three cards to each player
 		for( int i = 0; i < players.size(); i++ )
 		{
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
-			// players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
+			players.get(i).receive(deck.draw(false));
 		}
 		
 		// deal a card to the kitty
-		// kitty.add(deck.draw(false));
+		kitty.add(deck.draw(false));
 	}
 	
 	public ICardPlayer hand()
@@ -160,9 +157,7 @@ public class FiveHundredGame extends CardGame
 					ICard card = hand.get(i);
 					
 					// if the next card is a trump and the best isn't a trump
-					
-					/*
-					if( card.getSuit() == trumpSuit && bestCard.getSuit() != trumpSuit )
+					if( card.getSuit().ordinal() == trumpSuit.ordinal() && bestCard.getSuit().ordinal() != trumpSuit.ordinal() )
 					{
 						// the next card is the next best
 						bestCard = card;
@@ -174,7 +169,6 @@ public class FiveHundredGame extends CardGame
 							bestCard = card;
 						}
 					}
-					*/
 				}
 			}
 		}
