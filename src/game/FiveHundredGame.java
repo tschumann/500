@@ -9,6 +9,7 @@ import java_card.ICardPlayer;
 
 import deck.Deck;
 import deck.FiveHundredCardSuit;
+import deck.FiveHundredCardRank.Rank;
 import deck.FiveHundredCardSuit.Suit;
 
 public class FiveHundredGame extends CardGame
@@ -58,15 +59,15 @@ public class FiveHundredGame extends CardGame
 		misere = NONE;
 		
 		// remove the unneeded cards from the deck
-		deck.remove(Suit.SPADE, Rank.TWO);
-		deck.remove(Suit.DIAMOND, Rank.TWO);
-		deck.remove(Suit.CLUB, Rank.TWO);
-		deck.remove(Suit.HEART, Rank.TWO);
-		deck.remove(Suit.SPADE, Rank.THREE);
-		deck.remove(Suit.DIAMOND, Rank.THREE);
-		deck.remove(Suit.CLUB, Rank.THREE);
-		deck.remove(Suit.HEART, Rank.THREE);
-		deck.remove(REMOVED_JOKER_SUIT, Rank.JOKER);
+		// deck.remove(Suit.SPADE, Rank.TWO);
+		// deck.remove(Suit.DIAMOND, Rank.TWO);
+		// deck.remove(Suit.CLUB, Rank.TWO);
+		// deck.remove(Suit.HEART, Rank.TWO);
+		// deck.remove(Suit.SPADE, Rank.THREE);
+		// deck.remove(Suit.DIAMOND, Rank.THREE);
+		// deck.remove(Suit.CLUB, Rank.THREE);
+		// deck.remove(Suit.HEART, Rank.THREE);
+		// deck.remove(REMOVED_JOKER_SUIT, Rank.JOKER);
 	}
 	
 	public void deal()

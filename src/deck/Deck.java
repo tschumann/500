@@ -2,7 +2,9 @@ package deck;
 
 import java.util.ArrayList;
 
+import java_card.Card;
 import java_card.ICard;
+import java_card.ICardSuit;
 
 public class Deck
 {
@@ -13,68 +15,66 @@ public class Deck
 	public Deck(boolean jokers)
 	{
 		deck = new ArrayList<ICard>(INITIAL_DECK_SIZE);
-		
-		// easier and probably faster to just add each card manually
-		
-		/*
+
+		ICardSuit spade = new FiveHundredCardSuit(FiveHundredCardSuit.Suit.SPADE);
+
 		if( jokers )
 		{
-			deck.add(new Card(Suit.BLACK, Rank.JOKER));
-			deck.add(new Card(Suit.RED, Rank.JOKER));
+			// deck.add(new Card(Suit.BLACK, Rank.JOKER));
+			// deck.add(new Card(Suit.RED, Rank.JOKER));
 		}
-		deck.add(new Card(Suit.SPADE, Rank.ACE));
-		deck.add(new Card(Suit.SPADE, Rank.TWO));
-		deck.add(new Card(Suit.SPADE, Rank.THREE));
-		deck.add(new Card(Suit.SPADE, Rank.FOUR));
-		deck.add(new Card(Suit.SPADE, Rank.FIVE));
-		deck.add(new Card(Suit.SPADE, Rank.SIX));
-		deck.add(new Card(Suit.SPADE, Rank.SEVEN));
-		deck.add(new Card(Suit.SPADE, Rank.EIGHT));
-		deck.add(new Card(Suit.SPADE, Rank.NINE));
-		deck.add(new Card(Suit.SPADE, Rank.TEN));
-		deck.add(new Card(Suit.SPADE, Rank.JACK));
-		deck.add(new Card(Suit.SPADE, Rank.QUEEN));
-		deck.add(new Card(Suit.SPADE, Rank.KING));
-		deck.add(new Card(Suit.DIAMOND, Rank.ACE));
-		deck.add(new Card(Suit.DIAMOND, Rank.TWO));
-		deck.add(new Card(Suit.DIAMOND, Rank.THREE));
-		deck.add(new Card(Suit.DIAMOND, Rank.FOUR));
-		deck.add(new Card(Suit.DIAMOND, Rank.FIVE));
-		deck.add(new Card(Suit.DIAMOND, Rank.SIX));
-		deck.add(new Card(Suit.DIAMOND, Rank.SEVEN));
-		deck.add(new Card(Suit.DIAMOND, Rank.EIGHT));
-		deck.add(new Card(Suit.DIAMOND, Rank.NINE));
-		deck.add(new Card(Suit.DIAMOND, Rank.TEN));
-		deck.add(new Card(Suit.DIAMOND, Rank.JACK));
-		deck.add(new Card(Suit.DIAMOND, Rank.QUEEN));
-		deck.add(new Card(Suit.DIAMOND, Rank.KING));
-		deck.add(new Card(Suit.CLUB, Rank.ACE));
-		deck.add(new Card(Suit.CLUB, Rank.TWO));
-		deck.add(new Card(Suit.CLUB, Rank.THREE));
-		deck.add(new Card(Suit.CLUB, Rank.FOUR));
-		deck.add(new Card(Suit.CLUB, Rank.FIVE));
-		deck.add(new Card(Suit.CLUB, Rank.SIX));
-		deck.add(new Card(Suit.CLUB, Rank.SEVEN));
-		deck.add(new Card(Suit.CLUB, Rank.EIGHT));
-		deck.add(new Card(Suit.CLUB, Rank.NINE));
-		deck.add(new Card(Suit.CLUB, Rank.TEN));
-		deck.add(new Card(Suit.CLUB, Rank.JACK));
-		deck.add(new Card(Suit.CLUB, Rank.QUEEN));
-		deck.add(new Card(Suit.CLUB, Rank.KING));
-		deck.add(new Card(Suit.HEART, Rank.ACE));
-		deck.add(new Card(Suit.HEART, Rank.TWO));
-		deck.add(new Card(Suit.HEART, Rank.THREE));
-		deck.add(new Card(Suit.HEART, Rank.FOUR));
-		deck.add(new Card(Suit.HEART, Rank.FIVE));
-		deck.add(new Card(Suit.HEART, Rank.SIX));
-		deck.add(new Card(Suit.HEART, Rank.SEVEN));
-		deck.add(new Card(Suit.HEART, Rank.EIGHT));
-		deck.add(new Card(Suit.HEART, Rank.NINE));
-		deck.add(new Card(Suit.HEART, Rank.TEN));
-		deck.add(new Card(Suit.HEART, Rank.JACK));
-		deck.add(new Card(Suit.HEART, Rank.QUEEN));
-		deck.add(new Card(Suit.HEART, Rank.KING));
-		*/
+		// deck.add(new Card(spade, Rank.ACE));
+		// deck.add(new Card(spade, Rank.TWO));
+		// deck.add(new Card(spade, Rank.THREE));
+		// deck.add(new Card(spade, Rank.FOUR));
+		// deck.add(new Card(spade, Rank.FIVE));
+		// deck.add(new Card(spade, Rank.SIX));
+		// deck.add(new Card(spade, Rank.SEVEN));
+		// deck.add(new Card(spade, Rank.EIGHT));
+		// deck.add(new Card(spade, Rank.NINE));
+		// deck.add(new Card(spade, Rank.TEN));
+		// deck.add(new Card(spade, Rank.JACK));
+		// deck.add(new Card(spade, Rank.QUEEN));
+		// deck.add(new Card(spade, Rank.KING));
+		// deck.add(new Card(Suit.DIAMOND, Rank.ACE));
+		// deck.add(new Card(Suit.DIAMOND, Rank.TWO));
+		// deck.add(new Card(Suit.DIAMOND, Rank.THREE));
+		// deck.add(new Card(Suit.DIAMOND, Rank.FOUR));
+		// deck.add(new Card(Suit.DIAMOND, Rank.FIVE));
+		// deck.add(new Card(Suit.DIAMOND, Rank.SIX));
+		// deck.add(new Card(Suit.DIAMOND, Rank.SEVEN));
+		// deck.add(new Card(Suit.DIAMOND, Rank.EIGHT));
+		// deck.add(new Card(Suit.DIAMOND, Rank.NINE));
+		// deck.add(new Card(Suit.DIAMOND, Rank.TEN));
+		// deck.add(new Card(Suit.DIAMOND, Rank.JACK));
+		// deck.add(new Card(Suit.DIAMOND, Rank.QUEEN));
+		// deck.add(new Card(Suit.DIAMOND, Rank.KING));
+		// deck.add(new Card(Suit.CLUB, Rank.ACE));
+		// deck.add(new Card(Suit.CLUB, Rank.TWO));
+		// deck.add(new Card(Suit.CLUB, Rank.THREE));
+		// deck.add(new Card(Suit.CLUB, Rank.FOUR));
+		// deck.add(new Card(Suit.CLUB, Rank.FIVE));
+		// deck.add(new Card(Suit.CLUB, Rank.SIX));
+		// deck.add(new Card(Suit.CLUB, Rank.SEVEN));
+		// deck.add(new Card(Suit.CLUB, Rank.EIGHT));
+		// deck.add(new Card(Suit.CLUB, Rank.NINE));
+		// deck.add(new Card(Suit.CLUB, Rank.TEN));
+		// deck.add(new Card(Suit.CLUB, Rank.JACK));
+		// deck.add(new Card(Suit.CLUB, Rank.QUEEN));
+		// deck.add(new Card(Suit.CLUB, Rank.KING));
+		// deck.add(new Card(Suit.HEART, Rank.ACE));
+		// deck.add(new Card(Suit.HEART, Rank.TWO));
+		// deck.add(new Card(Suit.HEART, Rank.THREE));
+		// deck.add(new Card(Suit.HEART, Rank.FOUR));
+		// deck.add(new Card(Suit.HEART, Rank.FIVE));
+		// deck.add(new Card(Suit.HEART, Rank.SIX));
+		// deck.add(new Card(Suit.HEART, Rank.SEVEN));
+		// deck.add(new Card(Suit.HEART, Rank.EIGHT));
+		// deck.add(new Card(Suit.HEART, Rank.NINE));
+		// deck.add(new Card(Suit.HEART, Rank.TEN));
+		// deck.add(new Card(Suit.HEART, Rank.JACK));
+		// deck.add(new Card(Suit.HEART, Rank.QUEEN));
+		// deck.add(new Card(Suit.HEART, Rank.KING));
 	}
 	
 	/*
