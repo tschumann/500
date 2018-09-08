@@ -18,7 +18,7 @@ public class Player extends AbstractPlayer
 	
 	public Bid bid()
 	{
-		int number = 6;
+		int number = Bid.MIN_NUMBER;
 		FiveHundredCardSuit suit = new FiveHundredCardSuit(Suit.SPADE);
 		
 		return new Bid(number, suit, this);

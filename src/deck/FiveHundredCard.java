@@ -10,6 +10,7 @@ public class FiveHundredCard extends Card
 	public static final FiveHundredCardSuit clubs = new FiveHundredCardSuit(FiveHundredCardSuit.Suit.CLUB);
 	public static final FiveHundredCardSuit hearts = new FiveHundredCardSuit(FiveHundredCardSuit.Suit.HEART);
 	public static final FiveHundredCardSuit notrumps = new FiveHundredCardSuit(FiveHundredCardSuit.Suit.NO_TRUMP);
+	public static final FiveHundredCardSuit black = new FiveHundredCardSuit(FiveHundredCardSuit.Suit.BLACK);
 
 	public int compareTo(Card card)
 	{
@@ -22,6 +23,10 @@ public class FiveHundredCard extends Card
 	 */
 	public boolean isTrump()
 	{
-		return this.getSuit() == ((FiveHundredGame)this.getGame()).trump();
+		FiveHundredGame game = (FiveHundredGame)this.getGame();
+
+		// TODO: check for no trumps
+
+		return this.getSuit() == game.trump();
 	}
 }

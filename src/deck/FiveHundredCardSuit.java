@@ -2,6 +2,9 @@ package deck;
 
 import java_card.ICardSuit;
 
+/**
+ * Make this a class because enums can't be extended
+ */
 public class FiveHundredCardSuit implements ICardSuit
 {
 	public enum Suit
@@ -10,13 +13,8 @@ public class FiveHundredCardSuit implements ICardSuit
 		DIAMOND,
 		CLUB,
 		HEART,
-		NO_TRUMP
-	}
-	
-	public enum Colour
-	{
-		BLACK,
-		RED
+		NO_TRUMP,
+		BLACK // use the black joker
 	}
 	
 	private Suit suit;
@@ -34,24 +32,5 @@ public class FiveHundredCardSuit implements ICardSuit
 	public int ordinal()
 	{
 		return suit.ordinal();
-	}
-	
-	public Colour getColour()
-	{
-		switch(this.suit)
-		{
-		case SPADE:
-			return Colour.BLACK;
-		case DIAMOND:
-			return Colour.RED;
-		case CLUB:
-			return Colour.BLACK;
-		case HEART:
-			return Colour.RED;
-		}
-
-		// TODO: no trumps is special
-		// should never get here - raise an exception?
-		return null;
 	}
 }

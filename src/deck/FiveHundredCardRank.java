@@ -1,8 +1,10 @@
 package deck;
 
-import java_card.Card;
 import java_card.ICardRank;
 
+/**
+ * Make this a class because enums can't be extended
+ */
 public class FiveHundredCardRank implements ICardRank
 {
 	public enum Rank
@@ -23,13 +25,20 @@ public class FiveHundredCardRank implements ICardRank
 		JOKER,
 	}
 
-	public int ordinal() {
-		return 0;
+	private Rank rank;
+
+	public FiveHundredCardRank(Rank rank)
+	{
+		this.rank = rank;
 	}
 
-	public int compareTo(Card card)
+	public Rank getSuit()
 	{
-		// TODO: implement
-		return 0;
+		return rank;
+	}
+
+	public int ordinal()
+	{
+		return rank.ordinal();
 	}
 }

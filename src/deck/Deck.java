@@ -2,7 +2,6 @@ package deck;
 
 import java.util.ArrayList;
 
-import java_card.Card;
 import java_card.ICard;
 import java_card.ICardSuit;
 
