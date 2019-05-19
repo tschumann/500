@@ -120,7 +120,7 @@ public class FiveHundredGame extends CardGame
 			Player player = (Player)this.players.get(i);
 			// get the player to play a card based on the currently played cards,
 			// then add the card they played to the list of currently played cards
-			play.add(new CardPlay(player, player.play(play), this));
+			play.add(new CardPlay(player, player.play(play)));
 		}
 		
 		for( int i = 0; i < playerOrder.length; i++ )

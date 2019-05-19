@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import deck.FiveHundredCardSuit;
 import deck.FiveHundredCardSuit.Suit;
@@ -29,7 +29,7 @@ public class Player extends AbstractPlayer
 		this.hand.add(card);		
 	}
 	
-	public ICard play(Collection<CardPlay> played)
+	public ICard play(List<CardPlay> played)
 	{
 		return this.hand.get(0);
 	}
@@ -43,7 +43,7 @@ public class Player extends AbstractPlayer
 	 * Do nothing - the physical player will
 	 * see and remember what they can.
 	 */
-	public void seePlayedCards(Collection<CardPlay> played)
+	public void seePlayedCards(List<CardPlay> played)
 	{
 	}
 	
